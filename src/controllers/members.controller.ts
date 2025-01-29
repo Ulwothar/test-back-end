@@ -5,14 +5,10 @@ const router = express.Router();
 const membersService = new MembersService();
 
 router.get('/', (req: any, res: any) => {
-  const { page, perPage, fieldsIncluded } = req.query;
-  console.log({ page, perPage, fieldsIncluded });
+  const { page, perPage } = req.query;
+  console.log({ page, perPage });
   try {
-    const response = membersService.getAllMembers(
-      page,
-      perPage,
-      fieldsIncluded,
-    );
+    const response = membersService.getAllMembers(page, perPage);
     return res.status(200).send(response);
   } catch (err) {
     console.error(err);
@@ -31,6 +27,17 @@ router.get('/byDate', (req: any, res: any) => {
       page,
       perPage,
     );
+    return res.status(200).send(response);
+  } catch (err) {
+    console.error('Error getting filtered members');
+    return res.status(500).send({ error: err });
+  }
+});
+
+router.get('/bySport', (req: any, res: any) => {
+  let { sport, page, perPage } = req.query;
+  try {
+    const response = membersService.getMembersBySport(sport, page, perPage);
     return res.status(200).send(response);
   } catch (err) {
     console.error('Error getting filtered members');

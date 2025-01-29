@@ -31,4 +31,10 @@ describe('Test the members service', () => {
     );
     expect(filteredMemebers.length).toBeLessThanOrEqual(20);
   });
+
+  it('Should get maximum of 20 members, who have rowing as their favourite sport', () => {
+    const sport = 'rowing';
+    const filteredMemebers = memberService.getMembersBySport(sport, 0, 20);
+    expect(filteredMemebers.length).toBeLessThanOrEqual(20);
+  });
 });
