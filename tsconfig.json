@@ -19,5 +19,5 @@
   },
   "compileOnSave": true,
   "include": ["."],
-  "exclude": ["./jest.config.ts", "./exampleData.ts", "./dist"]
+  "exclude": ["./jest.config.ts", "src/exampleData.ts", "./dist"]
 }
